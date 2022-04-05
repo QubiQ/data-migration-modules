@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- Copyright 2022 Jesus Ramoneda <jesus.ramoneda@qubiq.es>
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <data noupdate="1">
+    
+    <record id="avoid_sequence_check" model="ir.config_parameter">
+        <field name="key">sequence.mixin.constraint_start_date</field>
+        <field name="value">2222-01-01</field>
+    </record>
+
+    <record id="ir_cron_move_compute_amount" model="ir.cron">
+        <field name="name">DATA MIGRATION - COMPUTE MOVE AMOUNT</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="active" eval="False"/>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="code">model.search([])._recompute_dynamic_lines(True, True)</field>
+        <field name="state">code</field>
+    </record>
+
+    </data>
+</odoo>
